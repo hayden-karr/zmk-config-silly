@@ -1,0 +1,19 @@
+#include "silly.dtsi"
+
+&default_transform {
+    col-offset = <9>;  // 9 columns on left side
+};
+
+&kscan0 {
+    col-gpios
+        = <&pro_micro 10 GPIO_ACTIVE_HIGH>  // Rcol1
+        , <&pro_micro 9 GPIO_ACTIVE_HIGH>   // Rcol2
+        , <&pro_micro 8 GPIO_ACTIVE_HIGH>   // Rcol3
+        , <&pro_micro 7 GPIO_ACTIVE_HIGH>   // Rcol4
+        , <&pro_micro 6 GPIO_ACTIVE_HIGH>   // Rcol5
+        , <&pro_micro 5 GPIO_ACTIVE_HIGH>   // Rcol6
+        , <&pro_micro 13 GPIO_ACTIVE_HIGH>  // rthumb1 (reversed)
+        , <&pro_micro 14 GPIO_ACTIVE_HIGH>  // rthumb2 (reversed)
+        , <&pro_micro 15 GPIO_ACTIVE_HIGH>  // rthumb3 (reversed)
+        ;
+};

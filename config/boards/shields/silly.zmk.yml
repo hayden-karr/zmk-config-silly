@@ -1,0 +1,11 @@
+file_format: "1"
+id: silly
+name: silly
+type: shield
+url: https://github.com/hayden-karr/zmk-config-silly
+requires: [pro_micro]
+features:
+  - keys
+siblings:
+  - silly_left
+  - silly_right
