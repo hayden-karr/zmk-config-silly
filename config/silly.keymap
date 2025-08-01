@@ -15,7 +15,6 @@
     behaviors {
         caps_word_mod: caps_word_mod {
             compatible = "zmk,behavior-caps-word";
-            label = "CAPS_WORD_MOD";
             #binding-cells = <0>;
             continue-list = <UNDERSCORE MINUS BSPC DEL>;
         };
