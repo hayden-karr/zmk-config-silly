@@ -2,13 +2,13 @@
 
 / {
     chosen {
-        zmk,kscan = &kscan_composite; 
+        zmk,kscan = &kscan_composite;
     };
 
     default_transform: keymap_transform_0 {
         compatible = "zmk,matrix-transform";
-        columns = <12>;  // 6 columns per side
-        rows = <4>;      // 3 matrix rows + 1 thumb row
+        columns = <12>;
+        rows = <4>;
         
         map = <
             RC(0,0) RC(0,1) RC(0,2) RC(0,3) RC(0,4) RC(0,5)     RC(0,6) RC(0,7) RC(0,8) RC(0,9) RC(0,10) RC(0,11)
@@ -18,50 +18,45 @@
         >;
     };
 
-    // Main key matrix (3x6 per side)
     kscan_matrix: kscan_matrix {
         compatible = "zmk,kscan-gpio-matrix";
         diode-direction = "col2row";
         
         row-gpios
-            = <&pro_micro 8 (GPIO_ACTIVE_HIGH | GPIO_PULL_DOWN)>   // Row1 - P1.04
-            , <&pro_micro 9 (GPIO_ACTIVE_HIGH | GPIO_PULL_DOWN)>   // Row2 - P1.06  
-            , <&pro_micro 15 (GPIO_ACTIVE_HIGH | GPIO_PULL_DOWN)>  // Row3 - P1.13
+            = <&pro_micro 8 (GPIO_ACTIVE_HIGH | GPIO_PULL_DOWN)>
+            , <&pro_micro 9 (GPIO_ACTIVE_HIGH | GPIO_PULL_DOWN)>
+            , <&pro_micro 15 (GPIO_ACTIVE_HIGH | GPIO_PULL_DOWN)>
             ;
 
         col-gpios
-            = <&pro_micro 7 GPIO_ACTIVE_HIGH>   // col1 - P0.11
-            , <&pro_micro 6 GPIO_ACTIVE_HIGH>   // col2 - P1.00
-            , <&pro_micro 5 GPIO_ACTIVE_HIGH>   // col3 - P0.24
-            , <&pro_micro 4 GPIO_ACTIVE_HIGH>   // col4 - P0.22
-            , <&pro_micro 3 GPIO_ACTIVE_HIGH>   // col5 - P0.20
-            , <&pro_micro 2 GPIO_ACTIVE_HIGH>   // col6 - P0.17
+            = <&pro_micro 7 GPIO_ACTIVE_HIGH>
+            , <&pro_micro 6 GPIO_ACTIVE_HIGH>
+            , <&pro_micro 5 GPIO_ACTIVE_HIGH>
+            , <&pro_micro 4 GPIO_ACTIVE_HIGH>
+            , <&pro_micro 3 GPIO_ACTIVE_HIGH>
+            , <&pro_micro 2 GPIO_ACTIVE_HIGH>
             ;
     };
 
-    // Direct GPIO thumb keys (3 keys)
     kscan_direct: kscan_direct {
         compatible = "zmk,kscan-gpio-direct";
         
         input-gpios
-            = <&pro_micro 14 (GPIO_ACTIVE_LOW | GPIO_PULL_UP)>  // thumb1 - P1.11
-            , <&pro_micro 16 (GPIO_ACTIVE_LOW | GPIO_PULL_UP)>  // thumb2 - P0.10
-            , <&pro_micro 10 (GPIO_ACTIVE_LOW | GPIO_PULL_UP)>  // thumb3 - P0.09
+            = <&pro_micro 14 (GPIO_ACTIVE_LOW | GPIO_PULL_UP)>
+            , <&pro_micro 16 (GPIO_ACTIVE_LOW | GPIO_PULL_UP)>
+            , <&pro_micro 10 (GPIO_ACTIVE_LOW | GPIO_PULL_UP)>
             ;
     };
 
-    // Composite kscan to combine matrix and direct keys
     kscan_composite: kscan_composite {
         compatible = "zmk,kscan-composite";
         rows = <4>;
         columns = <12>;
         
-        // Include the matrix driver
         matrix {
             kscan = <&kscan_matrix>;
         };
         
-        // Include the direct GPIO driver and shift to row 3
         direct {
             kscan = <&kscan_direct>;
             row-offset = <3>;

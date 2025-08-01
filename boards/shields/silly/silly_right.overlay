@@ -1,39 +1,37 @@
 #include "silly.dtsi"
 
 &default_transform {
-    col-offset = <6>;  // 6 columns on left side
+    col-offset = <6>;
 };
 
 &kscan_composite {
-    // Override the matrix child to add col-offset for right side
     matrix {
         kscan = <&kscan_matrix>;
-        col-offset = <6>;  // Shift right side matrix to columns 6-11
+        col-offset = <6>;
     };
     
-    // Override the direct child to add col-offset for right side thumbs
     direct {
         kscan = <&kscan_direct>;
         row-offset = <3>;
-        col-offset = <6>;  // Shift right side thumbs to columns 6-8
+        col-offset = <6>;
     };
 };
 
 &kscan_matrix {
     col-gpios
-        = <&pro_micro 7 GPIO_ACTIVE_HIGH>   // col1 - P0.11
-        , <&pro_micro 6 GPIO_ACTIVE_HIGH>   // col2 - P1.00
-        , <&pro_micro 5 GPIO_ACTIVE_HIGH>   // col3 - P0.24
-        , <&pro_micro 4 GPIO_ACTIVE_HIGH>   // col4 - P0.22
-        , <&pro_micro 3 GPIO_ACTIVE_HIGH>   // col5 - P0.20
-        , <&pro_micro 2 GPIO_ACTIVE_HIGH>   // col6 - P0.17
+        = <&pro_micro 7 GPIO_ACTIVE_HIGH>
+        , <&pro_micro 6 GPIO_ACTIVE_HIGH>
+        , <&pro_micro 5 GPIO_ACTIVE_HIGH>
+        , <&pro_micro 4 GPIO_ACTIVE_HIGH>
+        , <&pro_micro 3 GPIO_ACTIVE_HIGH>
+        , <&pro_micro 2 GPIO_ACTIVE_HIGH>
         ;
 };
 
 &kscan_direct {
     input-gpios
-        = <&pro_micro 10 (GPIO_ACTIVE_LOW | GPIO_PULL_UP)>  // rthumb1 (P0.09 - reversed as intended)
-        , <&pro_micro 16 (GPIO_ACTIVE_LOW | GPIO_PULL_UP)>  // rthumb2 (P0.10 - same)
-        , <&pro_micro 14 (GPIO_ACTIVE_LOW | GPIO_PULL_UP)>  // rthumb3 (P1.11 - reversed as intended)
+        = <&pro_micro 10 (GPIO_ACTIVE_LOW | GPIO_PULL_UP)>
+        , <&pro_micro 16 (GPIO_ACTIVE_LOW | GPIO_PULL_UP)>
+        , <&pro_micro 14 (GPIO_ACTIVE_LOW | GPIO_PULL_UP)>
         ;
 };
