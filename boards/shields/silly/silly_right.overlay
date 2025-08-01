@@ -1,7 +1,22 @@
 #include "silly.dtsi"
 
 &default_transform {
-    col-offset = <6>;  // 6 columns on left side for main keys
+    col-offset = <6>;  // 6 columns on left side
+};
+
+&kscan_composite {
+    // Override the matrix child to add col-offset for right side
+    matrix {
+        kscan = <&kscan_matrix>;
+        col-offset = <6>;  // Shift right side matrix to columns 6-11
+    };
+    
+    // Override the direct child to add col-offset for right side thumbs
+    direct {
+        kscan = <&kscan_direct>;
+        row-offset = <3>;
+        col-offset = <6>;  // Shift right side thumbs to columns 6-8
+    };
 };
 
 &kscan_matrix {
@@ -21,19 +36,4 @@
         , <&pro_micro 16 (GPIO_ACTIVE_LOW | GPIO_PULL_UP)>  // rthumb2 (P0.10 - same)
         , <&pro_micro 14 (GPIO_ACTIVE_LOW | GPIO_PULL_UP)>  // rthumb3 (P1.11 - reversed)
         ;
-};
-
-&kscan_composite {
-    // Override the matrix child to add col-offset
-    matrix {
-        kscan = <&kscan_matrix>;
-        col-offset = <6>;  // Shift right side matrix to columns 6-11
-    };
-    
-    // Override the direct child to add col-offset  
-    direct {
-        kscan = <&kscan_direct>;
-        row-offset = <3>;
-        col-offset = <6>;  // Shift right side thumbs to columns 6-8
-    };
 };
