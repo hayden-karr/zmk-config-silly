@@ -8,22 +8,20 @@
 
     default_transform: keymap_transform_0 {
         compatible = "zmk,matrix-transform";
-        columns = <12>;  // 6 columns per side for main keys
-        rows = <3>;      // 3 rows per side
+        columns = <12>;  // 6 columns per side for main keys + 3 per side for thumbs
+        rows = <4>;      // 3 rows for main keys + 1 row for thumbs
         
         map = <
             RC(0,0) RC(0,1) RC(0,2) RC(0,3) RC(0,4) RC(0,5)     RC(0,6) RC(0,7) RC(0,8) RC(0,9) RC(0,10) RC(0,11)
             RC(1,0) RC(1,1) RC(1,2) RC(1,3) RC(1,4) RC(1,5)     RC(1,6) RC(1,7) RC(1,8) RC(1,9) RC(1,10) RC(1,11)
             RC(2,0) RC(2,1) RC(2,2) RC(2,3) RC(2,4) RC(2,5)     RC(2,6) RC(2,7) RC(2,8) RC(2,9) RC(2,10) RC(2,11)
-                            RC(3,0) RC(3,1) RC(3,2)             RC(3,3) RC(3,4) RC(3,5)
+                            RC(3,0) RC(3,1) RC(3,2)             RC(3,6) RC(3,7) RC(3,8)
         >;
     };
 
     // Main key matrix (3x6 per side)
     kscan_matrix: kscan_matrix {
         compatible = "zmk,kscan-gpio-matrix";
-        label = "KSCAN_MATRIX";
-
         diode-direction = "col2row";
         
         row-gpios
@@ -42,10 +40,9 @@
             ;
     };
 
-    // Direct GPIO thumb keys
+    // Direct GPIO thumb keys (3 keys)
     kscan_direct: kscan_direct {
         compatible = "zmk,kscan-gpio-direct";
-        label = "KSCAN_DIRECT";
         
         input-gpios
             = <&pro_micro 14 (GPIO_ACTIVE_LOW | GPIO_PULL_UP)>  // thumb1 - P1.11
@@ -57,11 +54,18 @@
     // Composite kscan to combine matrix and direct keys
     kscan_composite: kscan_composite {
         compatible = "zmk,kscan-composite";
-        label = "KSCAN_COMPOSITE";
         rows = <4>;
         columns = <12>;
         
-        // Matrix keys first, then direct keys
-        kscan = <&kscan_matrix>, <&kscan_direct>;
+        // Include the matrix driver
+        matrix {
+            kscan = <&kscan_matrix>;
+        };
+        
+        // Include the direct GPIO driver and shift to row 3
+        direct {
+            kscan = <&kscan_direct>;
+            row-offset = <3>;
+        };
     };
 };
