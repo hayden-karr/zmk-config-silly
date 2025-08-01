@@ -22,7 +22,7 @@
             , <&key_physical_attrs 100 100 500    0     0     0    0>   // Z
             , <&key_physical_attrs 100 100 700    0     0     0    0>   // '
             , <&key_physical_attrs 100 100 800    0     0     0    0>   // F
-            , <&key_physical_attrs 100 100 900    0     0    0>   // O
+            , <&key_physical_attrs 100 100 900    0     0     0    0>   // O 
             , <&key_physical_attrs 100 100 1000   0     0     0    0>   // U
             , <&key_physical_attrs 100 100 1100   0     0     0    0>   // J
             , <&key_physical_attrs 100 100 1200   0     0     0    0>   // Bspc
