@@ -1,4 +1,7 @@
 #include "silly.dtsi"
+#include <physical_layouts.dtsi>
+
+// Right side does NOT set chosen node
 
 &default_transform {
     col-offset = <6>;
