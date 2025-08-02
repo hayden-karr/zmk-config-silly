@@ -1,39 +1,6 @@
 #include "silly.dtsi"
 #include <physical_layouts.dtsi>
 
-// Right side does NOT set chosen node
-
 &default_transform {
     col-offset = <6>;
-};
-
-&kscan_composite {
-    matrix {
-        kscan = <&kscan_matrix>;
-        col-offset = <6>;
-    };
-    
-    direct {
-        kscan = <&kscan_direct>;
-        row-offset = <3>;
-        col-offset = <6>;
-    };
-};
-&kscan_matrix {
-    col-gpios
-        = <&pro_micro 2 GPIO_ACTIVE_HIGH>
-        , <&pro_micro 3 GPIO_ACTIVE_HIGH>
-        , <&pro_micro 4 GPIO_ACTIVE_HIGH> 
-        , <&pro_micro 5 GPIO_ACTIVE_HIGH> 
-        , <&pro_micro 6 GPIO_ACTIVE_HIGH>  
-        , <&pro_micro 7 GPIO_ACTIVE_HIGH>   
-        ;
-
-};
-&kscan_direct {
-    input-gpios
-        = <&pro_micro 10 (GPIO_ACTIVE_LOW | GPIO_PULL_UP)>
-        , <&pro_micro 16 (GPIO_ACTIVE_LOW | GPIO_PULL_UP)>
-        , <&pro_micro 14 (GPIO_ACTIVE_LOW | GPIO_PULL_UP)>
-        ;
 };
