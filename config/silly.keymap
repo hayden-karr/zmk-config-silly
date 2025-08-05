@@ -11,14 +11,6 @@
         };
     };
 
-    conditional_layers {
-        compatible = "zmk,conditional-layers";
-        tri_layer {
-            if-layers = <2 3>;
-            then-layer = <1>;
-        };
-    };
-
     keymap {
         compatible = "zmk,keymap";
 
@@ -36,7 +28,7 @@
    &kp T     &kp TAB  &kp Q    &kp W    &kp E    &kp R       &trans   &trans   &trans   &trans   &trans   &trans
    &kp I     &kp LCTRL &kp A   &kp S    &kp D    &kp F       &trans   &trans   &trans   &trans   &trans   &trans
    &kp M     &kp LSHFT &kp Z   &kp X    &kp C    &kp V       &trans   &trans   &trans   &trans   &trans   &trans
-                              &tog 1   &lt 4 ESC &kp SPACE   &trans   &trans   &trans
+                               &to 0   &lt 5 ESC &kp SPACE   &trans   &trans   &trans
             >;
         };
 
@@ -45,18 +37,28 @@
    &kp TAB   &kp N1   &kp N2   &kp N3   &kp N4   &kp N5      &kp N6   &kp N7   &kp N8   &kp N9   &kp N0   &kp BSPC
    &kp LCTRL &kp LPAR &kp RPAR &kp LBKT &kp RBKT &trans      &trans   &kp MINUS &kp PLUS &kp EQUAL &kp BSLH &trans
    &kp LSHFT &kp LT   &kp GT   &kp LBRC &kp RBRC &trans      &trans   &kp UNDER &kp GRAVE &kp TILDE &kp PIPE &mt RSHFT RET
-                              &trans   &trans   &trans       &trans   &to 1    &trans
+                              &trans   &trans   &trans       &trans   &trans    &trans
             >;
         };
 
         raise_layer {
             bindings = <
-   &kp F1    &kp F2     &kp F3       &kp F4       &kp F5       &kp F6              &kp F7   &kp F8   &kp F9   &kp F10  &kp F11  &kp F12
-   &kp LCTRL &kp H      &kp J        &kp K        &kp L        &caps_word_mod      &kp CAPS   &kp LEFT &kp DOWN &kp UP   &kp RIGHT &trans
-   &kp LSHFT &bt BT_CLR &bt BT_SEL 0 &bt BT_SEL 1 &bt BT_SEL 2 &bt BT_SEL 3        &trans   &kp LCTRL &kp LALT &kp ESC &kp DEL  &mt RSHFT RET
-                                     &kp LGUI   &to 1    &trans                    &trans   &trans   &trans
+   &kp F1    &kp F2     &kp F3       &kp F4       &kp F5       &kp F6              &kp F7     &kp F8    &kp F9   &kp F10  &kp F11   &kp F12
+   &kp LCTRL &kp H      &kp J        &kp K        &kp L        &caps_word_mod      &kp CAPS   &kp LEFT  &kp DOWN &kp UP   &kp RIGHT &trans
+   &kp LSHFT &trans     &trans       &trans       &to 1       &trans              &trans     &mo 4 &kp LALT &kp ESC  &kp DEL   &mt RSHFT RET
+                                     &kp LGUI   &trans    &trans                    &trans   &trans   &trans
             >;
         };
+
+        bluetooth_layer {
+                    bindings = <
+          &none &none &none &none &none &none    &none &none &none &none &none &none
+          &kp BT_CLR_ALL &bt BT_CLR &bt BT_SEL 0 &bt BT_SEL 1 &bt BT_SEL 2 &bt BT_SEL 3      &none &none &none &none &none &none
+          &none &none  &none  &none &none  &none     &none &none &none &none &none &none
+                              &none &none  &none     &none &none &none
+                    >;
+                };
+
 
         gaming_numbers {
             bindings = <
