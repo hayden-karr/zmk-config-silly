@@ -3,7 +3,7 @@
 
 / {
     chosen {
-        zmk,kscan = &kscan;
+        zmk,kscan = &mock_kscan;
         zmk,physical-layout = &physical_layout;
     };
 
@@ -20,7 +20,7 @@
         >;
     };
 
-    kscan: kscan {
+    mock_kscan: mock_kscan_0 {
         compatible = "zmk,kscan-mock";
         columns = <0>;
         rows = <0>;
@@ -31,7 +31,7 @@
         compatible = "zmk,physical-layout";
         display-name = "Silly Split";
         transform = <&default_transform>;
-        kscan = <&kscan>;
+        kscan = <&mock_kscan>;
 
         keys
             = <&key_physical_attrs 100 100   0    0     0     0    0>
