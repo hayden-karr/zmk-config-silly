@@ -3,3 +3,6 @@ config SHIELD_SILLY_LEFT
 
 config SHIELD_SILLY_RIGHT
     def_bool $(shields_list_contains,silly_right)
+
+config SHIELD_SILLY_DONGLE
+    def_bool $(shields_list_contains,silly_dongle)

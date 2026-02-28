@@ -1,4 +1,4 @@
-if SHIELD_SILLY_LEFT
+if SHIELD_SILLY_DONGLE
 
 config ZMK_KEYBOARD_NAME
     default "silly"
@@ -8,14 +8,7 @@ config ZMK_SPLIT_ROLE_CENTRAL
 
 endif
 
-if SHIELD_SILLY_RIGHT
-
-config ZMK_KEYBOARD_NAME
-    default "silly"
-
-endif
-
-if SHIELD_SILLY_LEFT || SHIELD_SILLY_RIGHT
+if SHIELD_SILLY_LEFT || SHIELD_SILLY_RIGHT || SHIELD_SILLY_DONGLE
 
 config ZMK_SPLIT
     default y
