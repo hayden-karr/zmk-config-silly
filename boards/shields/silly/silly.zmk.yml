@@ -6,6 +6,7 @@ url: https://github.com/hayden-karr/zmk-config-silly
 requires: [pro_micro]
 features:
   - keys
+  - studio
 siblings:
   - silly_left
   - silly_right
